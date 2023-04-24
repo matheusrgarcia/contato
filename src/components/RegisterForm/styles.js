@@ -11,7 +11,6 @@ export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  height: 300px;
   width: 100%;
   align-self: center;
   padding: 1rem;

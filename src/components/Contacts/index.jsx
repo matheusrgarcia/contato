@@ -1,6 +1,6 @@
-import { ContactsContainer, Header, ContactData } from "./styles";
+import { ContactsContainer, Header, ContactsData, Contact } from "./styles";
 
-export const Contacts = () => {
+export const Contacts = ({ users }) => {
   return (
     <ContactsContainer>
       <Header>
@@ -10,7 +10,17 @@ export const Contacts = () => {
         <span>Nascimento</span>
         <span>Cidade</span>
       </Header>
-      <ContactData></ContactData>
+      <ContactsData>
+        {users.map((user) => (
+          <Contact key={user.id}>
+            <div>{user.name}</div>
+            <div>{user.email}</div>
+            <div>{user.phone}</div>
+            <div>{user.birth}</div>
+            <div>{user.city}</div>
+          </Contact>
+        ))}
+      </ContactsData>
     </ContactsContainer>
   );
 };

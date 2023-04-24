@@ -13,9 +13,13 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
+  background-image: url("src/assets/background-image.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-input, select {
+input,
+select {
   padding: 4px;
   border-radius: 4px;
 }

@@ -1,11 +1,11 @@
 import { FormFiltersContainer, CustomButton, InputsContainer } from "./styles";
 
-export const FormFilters = () => {
+export const FormFilters = ({ openContactForm }) => {
   const filterOptions = ["Nome", "Email", "Telefone", "Nascimento", "Cidade"];
 
   return (
     <FormFiltersContainer>
-      <CustomButton>+</CustomButton>
+      <CustomButton onClick={openContactForm}>+</CustomButton>
       <InputsContainer>
         <input type="text" placeholder="Buscar..." />
         <select>
