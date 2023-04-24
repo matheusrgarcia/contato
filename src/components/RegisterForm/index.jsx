@@ -6,19 +6,25 @@ import Logo from "../../assets/logo.png";
 import { FormFilters } from "../FormFilters";
 import { Contacts } from "../Contacts";
 import { Modal } from "../Modal";
-import { ActionButtons } from "../ActionButtons";
 import { UserAPI } from "../../apis/userAPI";
 
 export const RegisterForm = () => {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = React.useState(false);
   const [users, setUsers] = React.useState([]);
+  const [user, setUser] = React.useState({});
 
   const [textFilter, setTextFilter] = React.useState("");
   const [currentFilter, setCurrentFilter] = React.useState("name");
 
   const openContactForm = () => {
+    setUser({});
     setIsRegisterModalOpen(true);
   };
+
+  const openEditForm = () => {
+    setIsRegisterModalOpen(true);
+  };
+
 
   const closeContactForm = () => {
     setIsRegisterModalOpen(false);
@@ -50,14 +56,19 @@ export const RegisterForm = () => {
             setCurrentFilter={setCurrentFilter}
             setTextFilter={setTextFilter}
           />
-          <Contacts users={usersFiltered} />
-          <ActionButtons />
+          <Contacts
+            users={usersFiltered}
+            setUsers={setUsers}
+            setUser={setUser}
+            openEditForm={openEditForm}
+          />
         </FormContainer>
       </PageContainer>
       <Modal
         isOpen={isRegisterModalOpen}
         closeModal={closeContactForm}
         setUsers={setUsers}
+        user={user}
       />
     </>
   );

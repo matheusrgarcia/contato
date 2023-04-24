@@ -4,7 +4,7 @@ import { defineCancelApiObject } from "./configs/axiosUtils";
 export const UserAPI = {
   get: async function (id, cancel = false) {
     const response = await api.request({
-      url: `users/:id`,
+      url: `users/${id}`,
       method: "GET",
       // retrieving the signal value by using the property name
       signal: cancel
@@ -26,25 +26,40 @@ export const UserAPI = {
 
     return response.data;
   },
-  search: async function (name, cancel = false) {
+
+  remove: async function (id, cancel = false) {
     const response = await api.request({
-      url: "users/search",
-      method: "GET",
-      params: {
-        name: name,
-      },
+      url: `users/${id}`,
+      method: "DELETE",
       signal: cancel
-        ? cancelApiObject[this.search.name].handleRequestCancellation().signal
+        ? cancelApiObject[this.remove.name].handleRequestCancellation().signal
         : undefined,
     });
 
-    return response.data;
+    return response;
   },
+
   create: async function (user, cancel = false) {
     try {
       const response = await api.request({
         url: `users/`,
         method: "POST",
+        data: user,
+        signal: cancel
+          ? cancelApiObject[this.create.name].handleRequestCancellation().signal
+          : undefined,
+      });
+      return response;
+    } catch (error) {
+      return error.response.data;
+    }
+  },
+
+  update: async function (user, cancel = false) {
+    try {
+      const response = await api.request({
+        url: `users/${user.id}`,
+        method: "PUT",
         data: user,
         signal: cancel
           ? cancelApiObject[this.create.name].handleRequestCancellation().signal

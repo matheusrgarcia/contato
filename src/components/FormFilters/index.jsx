@@ -4,6 +4,7 @@ export const FormFilters = ({
   openContactForm,
   setCurrentFilter,
   setTextFilter,
+  setUser,
 }) => {
   const filterOptions = [
     {
