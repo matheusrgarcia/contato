@@ -4,6 +4,8 @@ export const ContactsContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const Header = styled.div`

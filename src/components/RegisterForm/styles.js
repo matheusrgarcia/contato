@@ -16,6 +16,7 @@ export const FormContainer = styled.div`
   padding: 1rem;
   margin: 1rem;
   position: relative;
+  max-height: 500px;
 `;
 
 export const CustomLogo = styled.img`
