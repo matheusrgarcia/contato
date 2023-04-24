@@ -6,6 +6,8 @@ import {
   CloseButton,
   Error,
   Errors,
+  Inline,
+  RequiredText
 } from "./styles";
 
 import { UserAPI } from "../../apis/userAPI";
@@ -66,7 +68,7 @@ export const Modal = ({ isOpen, closeModal, setUsers, user }) => {
       <ModalContent>
         <CloseButton onClick={closeModal}>&times;</CloseButton>
         <form onSubmit={handleSubmit}>
-          <h2>Usuário</h2>
+          <h2>Inserir</h2>
           <label>
             Nome:
             <input
@@ -75,6 +77,7 @@ export const Modal = ({ isOpen, closeModal, setUsers, user }) => {
               required
               defaultValue={user.name || ""}
             />
+            <RequiredText>Obrigatório</RequiredText>
           </label>
           <label>
             Email:
@@ -84,17 +87,22 @@ export const Modal = ({ isOpen, closeModal, setUsers, user }) => {
               required
               defaultValue={user.email || ""}
             />
+            <RequiredText>Obrigatório</RequiredText>
           </label>
+
+          <Inline>
+            <label>
+              Telefone:
+              <input type="text" name="phone" defaultValue={user.phone || ""} />
+            </label>
+            <label>
+              Data de Nascimento:
+              <input type="date" name="birth" defaultValue={user.birth || ""} />
+            </label>
+          </Inline>
+
           <label>
-            Telefone:
-            <input type="text" name="phone" defaultValue={user.phone || ""} />
-          </label>
-          <label>
-            Data de Nascimento:
-            <input type="date" name="birth" defaultValue={user.birth || ""} />
-          </label>
-          <label>
-            Cidade de Nascimento:
+            Cidade onde nasceu:
             <input type="text" name="city" defaultValue={user.city || ""} />
           </label>
           <Errors>

@@ -21,6 +21,7 @@ export const ModalContent = styled.div`
   border-radius: 5px;
   position: relative;
   max-width: 500px;
+  min-width: 300px;
 
   form {
     display: flex;
@@ -31,7 +32,14 @@ export const ModalContent = styled.div`
 
   label {
     display: flex;
+    flex-direction: column;
     gap: 8px;
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  input {
+    width: 95%;
   }
 
   button {
@@ -74,3 +82,13 @@ export const Errors = styled.div`
   flex-direction: column;
   margin-top: 12px;
 `;
+
+export const Inline = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+`;
+
+export const RequiredText = styled.span`
+  font-size: 12px;
+`

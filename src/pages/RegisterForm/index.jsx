@@ -3,9 +3,9 @@ import * as React from "react";
 import { FormContainer, PageContainer, CustomLogo } from "./styles";
 
 import Logo from "../../assets/logo.png";
-import { FormFilters } from "../FormFilters";
-import { Contacts } from "../Contacts";
-import { Modal } from "../Modal";
+import { FormFilters } from "../../components/FormFilters";
+import { Contacts } from "../../components/Contacts";
+import { Modal } from "../../components/Modal";
 import { UserAPI } from "../../apis/userAPI";
 
 export const RegisterForm = () => {
