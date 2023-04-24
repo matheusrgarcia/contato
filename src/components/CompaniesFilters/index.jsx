@@ -1,6 +1,6 @@
 import { FormFiltersContainer, CustomButton, InputsContainer } from "./styles";
 
-export const FormFilters = ({
+export const CompaniesFilters = ({
   openContactForm,
   setCurrentFilter,
   setTextFilter,
@@ -11,20 +11,12 @@ export const FormFilters = ({
       value: "name",
     },
     {
-      text: "Email",
-      value: "email",
+      text: "CNPJ",
+      value: "cnpj",
     },
     {
-      text: "Telefone",
-      value: "phone",
-    },
-    {
-      text: "Nascimento",
-      value: "birth",
-    },
-    {
-      text: "Cidade",
-      value: "city",
+      text: "Endereço",
+      value: "address",
     },
   ];
 

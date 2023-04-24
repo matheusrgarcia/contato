@@ -6,49 +6,54 @@ import {
   CloseButton,
   Error,
   Errors,
-  Inline,
   RequiredText,
 } from "./styles";
 
-import { UserAPI } from "../../apis/userAPI";
+import { CompanyAPI } from "../../apis/companyAPI";
 
-export const Modal = ({ isOpen, closeModal, setUsers, user }) => {
+export const ModalCompanies = ({
+  isOpen,
+  closeModal,
+  setCompanies,
+  company,
+  setCompany,
+}) => {
   const [errors, setErrors] = React.useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { name, email, birth, phone, city } = event.target;
+    const { name, cnpj, address } = event.target;
 
     const useData = {
       name: name.value,
-      email: email.value,
-      birth: birth.value,
-      phone: phone.value,
-      city: city.value,
-      id: user.id,
+      cnpj: cnpj.value,
+      address: address.value,
+      id: company.id,
     };
 
     if (!isEdit) {
-      UserAPI.create(useData).then((response) => {
+      CompanyAPI.create(useData).then((response) => {
         if (response.error) {
           setErrors((oldErrors) => [...oldErrors, response.error]);
         }
         if (response.data) {
-          setUsers((oldData) => [...oldData, response.data]);
+          setCompanies((oldData) => [...oldData, response.data.company]);
           closeModal();
         }
       });
     }
 
     if (isEdit) {
-      UserAPI.update(useData).then((response) => {
+      CompanyAPI.update(useData).then((response) => {
         if (response.error) {
           setErrors((oldErrors) => [...oldErrors, response.error]);
         }
         if (response.data) {
-          setUsers((oldData) =>
-            oldData.map((_user) =>
-              _user.id === user.id ? { ..._user, ...response.data } : _user
+          setCompanies((oldData) =>
+            oldData.map((_company) =>
+              _company.id === company.id
+                ? { ..._company, ...response.data }
+                : _company
             )
           );
           closeModal();
@@ -57,7 +62,7 @@ export const Modal = ({ isOpen, closeModal, setUsers, user }) => {
     }
   };
 
-  const isEdit = Object.keys(user).length > 0;
+  const isEdit = Object.keys(company).length > 0;
 
   React.useEffect(() => {
     setErrors([]);
@@ -75,35 +80,28 @@ export const Modal = ({ isOpen, closeModal, setUsers, user }) => {
               type="text"
               name="name"
               required
-              defaultValue={user.name || ""}
+              defaultValue={company.name || ""}
             />
             <RequiredText>Obrigatório</RequiredText>
           </label>
           <label>
-            Email:
+            CNPJ
             <input
-              type="email"
-              name="email"
+              type="text"
+              name="cnpj"
               required
-              defaultValue={user.email || ""}
+              defaultValue={company.cnpj || ""}
             />
             <RequiredText>Obrigatório</RequiredText>
           </label>
 
-          <Inline>
-            <label>
-              Telefone:
-              <input type="text" name="phone" defaultValue={user.phone || ""} />
-            </label>
-            <label>
-              Data de Nascimento:
-              <input type="date" name="birth" defaultValue={user.birth || ""} />
-            </label>
-          </Inline>
-
           <label>
-            Cidade onde nasceu:
-            <input type="text" name="city" defaultValue={user.city || ""} />
+            Endereço da empresa
+            <input
+              type="text"
+              name="address"
+              defaultValue={company.city || ""}
+            />
           </label>
           <Errors>
             {errors.map((error, index) => (

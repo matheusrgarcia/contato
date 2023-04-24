@@ -2,16 +2,17 @@ import "./App.css";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { RegisterForm } from "./pages/RegisterForm";
-
+import { UsersPage } from "./pages/UsersPage";
+import { CompaniesPage } from "./pages/CompaniesPage";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RegisterForm />}>
-          <Route index element={<RegisterForm />} />
-          <Route path="usuarios" element={<RegisterForm />} />
+        <Route path="/">
+          <Route index element={<UsersPage />} />
+          <Route path="usuarios" element={<UsersPage />} />
+          <Route path="empresas" element={<CompaniesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

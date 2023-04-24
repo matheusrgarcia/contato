@@ -23,3 +23,17 @@ export const CustomLogo = styled.img`
   width: 200px;
   align-self: center;
 `;
+
+export const RoutesLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  
+  a {
+    border: 1px solid lightblue;
+    border-radius: 4px;
+    padding: 6px 10px;
+    text-decoration: none;
+    color: #000;
+  }
+`

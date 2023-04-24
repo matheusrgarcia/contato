@@ -1,6 +1,7 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 
-import { FormContainer, PageContainer, CustomLogo } from "./styles";
+import { FormContainer, PageContainer, CustomLogo, RoutesLinks } from "./styles";
 
 import Logo from "../../assets/logo.png";
 import { FormFilters } from "../../components/FormFilters";
@@ -8,7 +9,7 @@ import { Contacts } from "../../components/Contacts";
 import { Modal } from "../../components/Modal";
 import { UserAPI } from "../../apis/userAPI";
 
-export const RegisterForm = () => {
+export const UsersPage = () => {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = React.useState(false);
   const [users, setUsers] = React.useState([]);
   const [user, setUser] = React.useState({});
@@ -25,14 +26,12 @@ export const RegisterForm = () => {
     setIsRegisterModalOpen(true);
   };
 
-
   const closeContactForm = () => {
     setIsRegisterModalOpen(false);
   };
 
   React.useEffect(() => {
     UserAPI.getAll().then((_users) => {
-      console.log(_users);
       setUsers(_users);
     });
   }, []);
@@ -50,6 +49,11 @@ export const RegisterForm = () => {
     <>
       <PageContainer>
         <FormContainer>
+          <RoutesLinks>
+            <Link to="/">Usuários</Link>
+            <Link to="/empresas">Empresas</Link>
+          </RoutesLinks>
+
           <CustomLogo src={Logo} alt="Contato seguro logo" />
           <FormFilters
             openContactForm={openContactForm}
